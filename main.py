@@ -293,13 +293,13 @@ class Main:
     async def launch(self):
         print(f"[Cluster Manager] Starting a total of {config.BOT_CLUSTERS} clusters.")
 
-        self.bot = ModMail(cluster_id=0, cluster_count=int(config.BOT_CLUSTERS))
+        self.bot = ModMail(cluster_id=0, cluster_count=int(config.BOT_CLUSTERS or 1))
         await self.bot.start(worker=False)
 
         self.bot.id = (await self.bot.real_user()).id
         self.bot.state.id = self.bot.id
 
-        for i in range(int(config.BOT_CLUSTERS)):
+        for i in range(int(config.BOT_CLUSTERS or 1)):
             self.instances.append(Instance(i + 1, loop=self.loop, main=self))
 
         self.write_targets()
