@@ -291,7 +291,7 @@ class Main:
             json.dump(data, file, indent=2)
 
     async def launch(self):
-        print(f"[Cluster Manager] Starting a total of {config.BOT_CLUSTERS} clusters.")
+        print(f"[Cluster Manager] Starting a total of {config.BOT_CLUSTERS or 1} clusters.")
 
         self.bot = ModMail(cluster_id=0, cluster_count=int(config.BOT_CLUSTERS or 1))
         await self.bot.start(worker=False)
